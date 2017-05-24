@@ -5,26 +5,54 @@ import java.util.Scanner;
 public class Urlify {
 
 	public static void main(String args[]){
+		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter total number of characters: ");
-		int total = sc.nextInt();
+		
 		System.out.println("Enter string to test: ");
-		String original = sc.next();
-		original = original.trim();
+		String original = sc.nextLine();
+		System.out.println("Enter total number of characters: ");
+		
+		int actualLen = sc.nextInt();
 		
 		char[] toUrl = original.toCharArray();
-		
-		convertURL(toUrl, total);
+		convertURL(toUrl, actualLen);
 		
 	}
 	
-	private static String convertURL(char[] toURL, int total) {
-		int i = 0;
-		int j = 0;
+	private static void convertURL(char[] toURL, int actualLen) {
 		
-		while(i > toURL.length && j > total){
-			
+		//finding total spaces
+		
+		int spaceCount = 0;
+		
+		for(int i = 0; i < actualLen-1; i++){
+			if(toURL[i] == ' '){
+				spaceCount ++;
+			}
 		}
-		return null;
+		
+		// length of the new string
+		int index = actualLen + (2 * spaceCount);
+		
+		int actual = actualLen - 1;
+		int newlen = index - 1;
+		
+		// replacing spaces with "%20"
+		while(actual >= 0 && newlen >= 0){
+			if(toURL[actual] == ' '){
+				toURL[newlen] = '0';
+				toURL[newlen - 1] = '2';
+				toURL[newlen - 2] = '%';
+				newlen -= 3;
+			}
+			else {
+				toURL[newlen] = toURL[actual];
+				newlen--;
+			}
+			actual--;
+		}
+		
+		
+		System.out.println(String.valueOf(toURL));
 	}
 }
