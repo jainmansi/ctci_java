@@ -34,6 +34,7 @@ public class ZeroMatrix {
 			System.out.println("\n");
 		}
 		
+		sc.close();
 	}
 
 	public static int[][] convertZero(int[][] matrix) {
