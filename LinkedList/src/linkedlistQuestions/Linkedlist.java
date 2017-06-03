@@ -24,6 +24,23 @@ public class Linkedlist {
 		head = newNode;
 		this.size++;
 	}
+	
+	//append node to the list
+	public void appendNode(Node n){
+		if (head == null) {
+			head = n;
+			this.size++;
+			return;
+		}
+
+		Node last = head;
+
+		while (last.next != null) {
+			last = last.next;
+		}
+		last.next = n;
+		this.size++;
+	}
 
 	// insert at the end of the list
 	public void append(int data) {
@@ -138,7 +155,17 @@ public class Linkedlist {
 	
 	//get the size of the list
 	public int getSize(){
-		return this.size;
+		Node current = head;
+		int count = 0;
+		if(current == null){
+			return count;
+		}
+		
+		while(current != null){
+			current = current.next;
+			count++;
+		}
+		return count;
 	}
 	
 	//Display all the elements of the list
