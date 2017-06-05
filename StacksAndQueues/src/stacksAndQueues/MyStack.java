@@ -11,10 +11,12 @@ public class MyStack<T> {
 
 		StackNode(T data) {
 			this.data = data;
+			this.next = null;
 		}
 
 		StackNode() {
 			this.data = null;
+			this.next = null;
 		}
 	}
 
