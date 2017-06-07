@@ -15,51 +15,63 @@ public class MyQueue<T> {
 			this.data = data;
 			this.next = null;
 		}
-
-		QueueNode() {
-			this.data = null;
-			this.next = null;
-		}
 	}
 
-	QueueNode head = new QueueNode<T>();
+	QueueNode first;
+	QueueNode last;
 	int size = 0;
 
 	// To enqueue value in the queue
 	public void enqueue(T data) {
 		QueueNode new_node = new QueueNode<>(data);
-		if (head == null) {
-			head = new_node;
+		QueueNode current = last;
+		if (last == null) {
+			current = new_node;
+			last = new_node;
+			first = new_node;
 			this.size++;
 			return;
 		}
-		QueueNode current = head;
-		while (current.next != null) {
-			current = current.next;
-		}
+		last = new_node;
 		current.next = new_node;
 		this.size++;
 	}
 
 	// To dequeue value from the queue
 	public QueueNode dequeue() {
-		if (head == null) {
+		if (first == null) {
 			throw new EmptyStackException();
 		}
-		QueueNode item = head;
-		head = head.next;
+		QueueNode item = first;
+		first = first.next;
 		this.size--;
 		return item;
 	}
 
-	// return's head of the queue
-	public QueueNode getHead() {
-		return head;
+	// return's first element of the queue
+	public QueueNode getFirst() {
+		return first;
+	}
+
+	// return's last element of the queue
+	public QueueNode getLast() {
+		return last;
 	}
 
 	// return's size of the queue
 	public int getSize() {
 		return size;
+	}
+
+	// displays entire queue
+	public void display() {
+		QueueNode<T> currentNode = getFirst();
+		while (currentNode != null) {
+			System.out.print(currentNode.data);
+			System.out.print("->");
+			currentNode = currentNode.next;
+		}
+		System.out.print("X");
 	}
 
 }

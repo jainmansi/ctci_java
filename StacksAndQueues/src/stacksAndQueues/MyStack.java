@@ -66,4 +66,16 @@ public class MyStack<T> {
 		return size;
 	}
 
+	// displays entire stack
+	public void display() {
+		StackNode<T> node = getHead();
+		while (node != null) {
+			System.out.print(node.data);
+			System.out.print("->");
+			node = node.next;
+		}
+		System.out.print("X");
+		System.out.println("");
+	}
+
 }
