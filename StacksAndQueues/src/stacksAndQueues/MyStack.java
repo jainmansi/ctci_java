@@ -49,11 +49,11 @@ public class MyStack<T> {
 	}
 
 	// Method to get the head of the stack
-	public StackNode<T> peek() {
+	public T peek() {
 		if (head.data == null) {
 			throw new EmptyStackException();
 		}
-		return head;
+		return (T) head.data;
 	}
 
 	// return's head of the stack
