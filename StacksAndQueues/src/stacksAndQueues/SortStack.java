@@ -1,7 +1,5 @@
 package stacksAndQueues;
 
-import javax.swing.SortingFocusTraversalPolicy;
-
 public class SortStack {
 
 	public static void main(String[] args) {
