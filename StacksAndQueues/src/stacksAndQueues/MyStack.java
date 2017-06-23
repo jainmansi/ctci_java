@@ -77,5 +77,11 @@ public class MyStack<T> {
 		System.out.print("X");
 		System.out.println("");
 	}
+	
+	public boolean isEmpty() {
+		if(getHead() == null)
+			return true;
+		return false;
+	}
 
 }
