@@ -2,6 +2,7 @@ package Trees;
 
 public class BinarySearchTree {
 
+	//Node class
 	class Node {
 		int data;
 		Node left, right;
@@ -18,10 +19,12 @@ public class BinarySearchTree {
 		root = null;
 	}
 
+	//wrapper for addNode method
 	public void insertData(int data) {
 		root = addNode(root, data);
 	}
 
+	//Insert new node in a binary tree
 	public Node addNode(Node root, int data) {
 		if (root == null) {
 			root = new Node(data);
@@ -37,6 +40,43 @@ public class BinarySearchTree {
 		return root;
 	}
 	
+	void removeFromTree(BinarySearchTree tree, int key) {
+		root = removeNode(tree.root, key);
+	}
+	
+	public Node removeNode(Node root, int key) {
+		if (root == null) {
+			return root;
+		}
+		
+		if (key < root.data) {
+			root.left = removeNode(root.left, key);
+		} else if (key > root.data) {
+			root.right = removeNode(root.right, key);
+		} 
+		else {
+			if (root.left == null) {
+				return root.right;
+			} else if (root.right == null) {
+				return root.left;
+			}
+			root.data = minData(root.right);
+			root.right = removeNode(root.right, root.data);
+		}
+		return root;
+	}
+	
+	int minData(Node root) {
+		int min = root.data;
+		while (root.left != null) {
+			min = root.left.data;
+			root = root.left;
+		}
+		return min;
+	}
+	
+	
+	//print data in the tree inOrder
 	public void printInorder(Node root) {
 		if(root != null) {
 			printInorder(root.left);
@@ -58,6 +98,10 @@ public class BinarySearchTree {
 		tree.insertData(70);
 		tree.insertData(100);
 		
+		tree.printInorder(tree.root);
+		
+		tree.removeFromTree(tree, 30);
+		System.out.println("");
 		tree.printInorder(tree.root);
 	}
 
